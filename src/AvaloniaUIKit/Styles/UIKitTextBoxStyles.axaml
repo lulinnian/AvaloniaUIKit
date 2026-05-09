@@ -1,0 +1,73 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:AvaloniaUIKit.Controls.TextBox">
+
+  <Style Selector="controls|UIKitTextBox">
+    <Setter Property="Background" Value="{DynamicResource UIKit.Background}" />
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.TextPrimary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.Border}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource UIKit.RadiusMedium}" />
+    <Setter Property="Padding" Value="{DynamicResource UIKit.PaddingMedium}" />
+    <Setter Property="FontSize" Value="{DynamicResource UIKit.FontSizeBase}" />
+    <Setter Property="MinHeight" Value="32" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_Border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}">
+          <Grid ColumnDefinitions="Auto,*,Auto" Margin="{TemplateBinding Padding}">
+            <!-- 前缀图标插槽 -->
+            <ContentPresenter Grid.Column="0"
+                              Content="{TemplateBinding PrefixContent}"
+                              IsVisible="{TemplateBinding PrefixContent, Converter={x:Static ObjectConverters.IsNotNull}}"
+                              Margin="0,0,6,0"
+                              VerticalAlignment="Center" />
+            <!-- 文本编辑区 -->
+            <ScrollViewer Grid.Column="1"
+                          HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                          VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+              <TextPresenter Name="PART_TextPresenter"
+                             Text="{TemplateBinding Text, Mode=TwoWay}"
+                             CaretIndex="{TemplateBinding CaretIndex}"
+                             SelectionStart="{TemplateBinding SelectionStart}"
+                             SelectionEnd="{TemplateBinding SelectionEnd}"
+                             TextAlignment="{TemplateBinding TextAlignment}"
+                             TextWrapping="{TemplateBinding TextWrapping}"
+                             LineHeight="{TemplateBinding LineHeight}"
+                             LetterSpacing="{TemplateBinding LetterSpacing}"
+                             PasswordChar="{TemplateBinding PasswordChar}"
+                             RevealPassword="{TemplateBinding RevealPassword}"
+                             SelectionBrush="{TemplateBinding SelectionBrush}"
+                             SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                             CaretBrush="{TemplateBinding CaretBrush}"
+                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </ScrollViewer>
+            <!-- 后缀图标插槽 -->
+            <ContentPresenter Grid.Column="2"
+                              Content="{TemplateBinding SuffixContent}"
+                              IsVisible="{TemplateBinding SuffixContent, Converter={x:Static ObjectConverters.IsNotNull}}"
+                              Margin="6,0,0,0"
+                              VerticalAlignment="Center" />
+          </Grid>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="controls|UIKitTextBox:pointerover">
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.Primary}" />
+  </Style>
+  <Style Selector="controls|UIKitTextBox:focus">
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.BorderFocus}" />
+  </Style>
+  <Style Selector="controls|UIKitTextBox:disabled">
+    <Setter Property="Background" Value="{DynamicResource UIKit.Surface}" />
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.TextDisabled}" />
+    <Setter Property="Opacity" Value="0.6" />
+  </Style>
+
+</Styles>

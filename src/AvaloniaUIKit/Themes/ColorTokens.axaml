@@ -1,0 +1,66 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!-- 主色调 Primary -->
+  <Color  x:Key="UIKit.PrimaryColor">#FF1677FF</Color>
+  <Color  x:Key="UIKit.PrimaryHoverColor">#FF4096FF</Color>
+  <Color  x:Key="UIKit.PrimaryActiveColor">#FF0958D9</Color>
+  <SolidColorBrush x:Key="UIKit.Primary"       Color="{DynamicResource UIKit.PrimaryColor}" />
+  <SolidColorBrush x:Key="UIKit.PrimaryHover"  Color="{DynamicResource UIKit.PrimaryHoverColor}" />
+  <SolidColorBrush x:Key="UIKit.PrimaryActive" Color="{DynamicResource UIKit.PrimaryActiveColor}" />
+
+  <!-- 主色前景（在 Primary 背景上的文字颜色） -->
+  <Color  x:Key="UIKit.PrimaryForegroundColor">#FFFFFFFF</Color>
+  <SolidColorBrush x:Key="UIKit.PrimaryForeground" Color="{DynamicResource UIKit.PrimaryForegroundColor}" />
+
+  <!-- 危险色 Danger -->
+  <Color  x:Key="UIKit.DangerColor">#FFFF4D4F</Color>
+  <Color  x:Key="UIKit.DangerHoverColor">#FFFF7875</Color>
+  <Color  x:Key="UIKit.DangerActiveColor">#FFCF1322</Color>
+  <SolidColorBrush x:Key="UIKit.Danger"       Color="{DynamicResource UIKit.DangerColor}" />
+  <SolidColorBrush x:Key="UIKit.DangerHover"  Color="{DynamicResource UIKit.DangerHoverColor}" />
+  <SolidColorBrush x:Key="UIKit.DangerActive" Color="{DynamicResource UIKit.DangerActiveColor}" />
+
+  <!-- 成功色 Success -->
+  <Color  x:Key="UIKit.SuccessColor">#FF52C41A</Color>
+  <SolidColorBrush x:Key="UIKit.Success" Color="{DynamicResource UIKit.SuccessColor}" />
+
+  <!-- 警告色 Warning -->
+  <Color  x:Key="UIKit.WarningColor">#FFFAAD14</Color>
+  <SolidColorBrush x:Key="UIKit.Warning" Color="{DynamicResource UIKit.WarningColor}" />
+
+  <!-- 中性色 背景 边框 -->
+  <Color  x:Key="UIKit.BackgroundColor">#FFFFFFFF</Color>
+  <Color  x:Key="UIKit.SurfaceColor">#FFF5F5F5</Color>
+  <Color  x:Key="UIKit.BorderColor">#FFD9D9D9</Color>
+  <Color  x:Key="UIKit.BorderFocusColor">#FF1677FF</Color>
+  <SolidColorBrush x:Key="UIKit.Background"    Color="{DynamicResource UIKit.BackgroundColor}" />
+  <SolidColorBrush x:Key="UIKit.Surface"       Color="{DynamicResource UIKit.SurfaceColor}" />
+  <SolidColorBrush x:Key="UIKit.Border"        Color="{DynamicResource UIKit.BorderColor}" />
+  <SolidColorBrush x:Key="UIKit.BorderFocus"   Color="{DynamicResource UIKit.BorderFocusColor}" />
+
+  <!-- 文字颜色 -->
+  <Color  x:Key="UIKit.TextPrimaryColor">#FF000000</Color>
+  <Color  x:Key="UIKit.TextSecondaryColor">#FF8C8C8C</Color>
+  <Color  x:Key="UIKit.TextDisabledColor">#FFBFBFBF</Color>
+  <SolidColorBrush x:Key="UIKit.TextPrimary"   Color="{DynamicResource UIKit.TextPrimaryColor}" />
+  <SolidColorBrush x:Key="UIKit.TextSecondary" Color="{DynamicResource UIKit.TextSecondaryColor}" />
+  <SolidColorBrush x:Key="UIKit.TextDisabled"  Color="{DynamicResource UIKit.TextDisabledColor}" />
+
+  <!-- 圆角 Token -->
+  <CornerRadius x:Key="UIKit.RadiusSmall">4</CornerRadius>
+  <CornerRadius x:Key="UIKit.RadiusMedium">6</CornerRadius>
+  <CornerRadius x:Key="UIKit.RadiusLarge">8</CornerRadius>
+
+  <!-- 字体大小 Token -->
+  <x:Double x:Key="UIKit.FontSizeSmall">12</x:Double>
+  <x:Double x:Key="UIKit.FontSizeBase">14</x:Double>
+  <x:Double x:Key="UIKit.FontSizeLarge">16</x:Double>
+  <x:Double x:Key="UIKit.FontSizeTitle">20</x:Double>
+
+  <!-- 间距 Token -->
+  <Thickness x:Key="UIKit.PaddingSmall">6,4</Thickness>
+  <Thickness x:Key="UIKit.PaddingMedium">12,6</Thickness>
+  <Thickness x:Key="UIKit.PaddingLarge">16,10</Thickness>
+
+</ResourceDictionary>

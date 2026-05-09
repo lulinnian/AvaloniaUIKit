@@ -1,0 +1,41 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:AvaloniaUIKit.Controls.Card">
+
+  <Style Selector="controls|UIKitCard">
+    <Setter Property="Background" Value="{DynamicResource UIKit.Background}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.Border}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource UIKit.RadiusLarge}" />
+    <Setter Property="Padding" Value="16" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="{TemplateBinding Padding}">
+          <StackPanel>
+            <!-- Header 区域（可选） -->
+            <ContentPresenter Name="PART_Header"
+                              Content="{TemplateBinding Header}"
+                              FontSize="{DynamicResource UIKit.FontSizeLarge}"
+                              FontWeight="SemiBold"
+                              Foreground="{DynamicResource UIKit.TextPrimary}"
+                              IsVisible="{TemplateBinding Header, Converter={x:Static ObjectConverters.IsNotNull}}"
+                              Margin="0,0,0,12" />
+            <!-- 主内容 -->
+            <ContentPresenter Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}" />
+          </StackPanel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <!-- hoverable 变体：鼠标悬停时轻微阴影效果（通过 BorderBrush 变化模拟） -->
+  <Style Selector="controls|UIKitCard.hoverable:pointerover">
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.Primary}" />
+  </Style>
+
+</Styles>

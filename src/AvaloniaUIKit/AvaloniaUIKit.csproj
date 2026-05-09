@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+
+    <!-- NuGet 包信息 -->
+    <PackageId>AvaloniaUIKit</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>YourName</Authors>
+    <Description>A reusable Avalonia 11+ UI component library with theme token support.</Description>
+    <PackageTags>avalonia;ui;components;themes</PackageTags>
+    <RepositoryUrl>https://github.com/yourname/AvaloniaUIKit</RepositoryUrl>
+
+    <!-- 让 axaml 资源文件嵌入到程序集 -->
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.3" />
+  </ItemGroup>
+
+  <!-- 将 axaml 文件嵌入程序集资源 -->
+  <ItemGroup>
+    <AvaloniaResource Include="**\*.axaml" Exclude="obj\**" />
+  </ItemGroup>
+
+</Project>

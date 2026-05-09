@@ -1,0 +1,36 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!-- 深色主题 Color Token -->
+
+  <!-- 主色调 Primary -->
+  <Color  x:Key="UIKit.PrimaryColor">#FF4096FF</Color>
+  <Color  x:Key="UIKit.PrimaryHoverColor">#FF69B1FF</Color>
+  <Color  x:Key="UIKit.PrimaryActiveColor">#FF1677FF</Color>
+
+  <!-- 主色前景（在 Primary 背景上的文字颜色） -->
+  <Color  x:Key="UIKit.PrimaryForegroundColor">#FFFFFFFF</Color>
+
+  <!-- 危险色 Danger -->
+  <Color  x:Key="UIKit.DangerColor">#FFFF7875</Color>
+  <Color  x:Key="UIKit.DangerHoverColor">#FFFFB8B8</Color>
+  <Color  x:Key="UIKit.DangerActiveColor">#FFFF4D4F</Color>
+
+  <!-- 成功色 Success -->
+  <Color  x:Key="UIKit.SuccessColor">#FF95DE64</Color>
+
+  <!-- 警告色 Warning -->
+  <Color  x:Key="UIKit.WarningColor">#FFFFD666</Color>
+
+  <!-- 中性色 背景 边框 -->
+  <Color  x:Key="UIKit.BackgroundColor">#FF141414</Color>
+  <Color  x:Key="UIKit.SurfaceColor">#FF1F1F1F</Color>
+  <Color  x:Key="UIKit.BorderColor">#FF424242</Color>
+  <Color  x:Key="UIKit.BorderFocusColor">#FF4096FF</Color>
+
+  <!-- 文字颜色 -->
+  <Color  x:Key="UIKit.TextPrimaryColor">#FFE8E8E8</Color>
+  <Color  x:Key="UIKit.TextSecondaryColor">#FF8C8C8C</Color>
+  <Color  x:Key="UIKit.TextDisabledColor">#FF595959</Color>
+
+</ResourceDictionary>

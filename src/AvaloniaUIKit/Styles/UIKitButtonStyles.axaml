@@ -1,0 +1,127 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:AvaloniaUIKit.Controls.Button">
+
+
+  <!-- 基础样式 -->
+  <Style Selector="controls|UIKitButton">
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="FontSize" Value="{DynamicResource UIKit.FontSizeBase}" />
+    <Setter Property="Padding" Value="{DynamicResource UIKit.PaddingMedium}" />
+    <Setter Property="CornerRadius" Value="{DynamicResource UIKit.RadiusMedium}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="MinHeight" Value="32" />
+    <Setter Property="Transitions">
+      <Transitions>
+        <BrushTransition Property="Background" Duration="0:0:0.15" />
+        <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+      </Transitions>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_Border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="{TemplateBinding Padding}">
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Foreground="{TemplateBinding Foreground}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <!-- Primary 默认 -->
+  <Style Selector="controls|UIKitButton:not(.secondary):not(.danger):not(.ghost):not(.link)">
+    <Setter Property="Background" Value="{DynamicResource UIKit.Primary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.Primary}" />
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.PrimaryForeground}" />
+  </Style>
+  <Style Selector="controls|UIKitButton:not(.secondary):not(.danger):not(.ghost):not(.link):pointerover">
+    <Setter Property="Background" Value="{DynamicResource UIKit.PrimaryHover}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.PrimaryHover}" />
+  </Style>
+  <Style Selector="controls|UIKitButton:not(.secondary):not(.danger):not(.ghost):not(.link):pressed">
+    <Setter Property="Background" Value="{DynamicResource UIKit.PrimaryActive}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.PrimaryActive}" />
+  </Style>
+
+  <!-- Secondary 描边 -->
+  <Style Selector="controls|UIKitButton.secondary">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.Primary}" />
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.Primary}" />
+  </Style>
+  <Style Selector="controls|UIKitButton.secondary:pointerover">
+    <Setter Property="Background" Value="{DynamicResource UIKit.PrimaryHover}" />
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.PrimaryForeground}" />
+  </Style>
+  <Style Selector="controls|UIKitButton.secondary:pressed">
+    <Setter Property="Background" Value="{DynamicResource UIKit.PrimaryActive}" />
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.PrimaryForeground}" />
+  </Style>
+
+  <!-- Danger -->
+  <Style Selector="controls|UIKitButton.danger">
+    <Setter Property="Background" Value="{DynamicResource UIKit.Danger}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.Danger}" />
+    <Setter Property="Foreground" Value="White" />
+  </Style>
+  <Style Selector="controls|UIKitButton.danger:pointerover">
+    <Setter Property="Background" Value="{DynamicResource UIKit.DangerHover}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.DangerHover}" />
+  </Style>
+  <Style Selector="controls|UIKitButton.danger:pressed">
+    <Setter Property="Background" Value="{DynamicResource UIKit.DangerActive}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.DangerActive}" />
+  </Style>
+
+  <!-- Ghost -->
+  <Style Selector="controls|UIKitButton.ghost">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.Border}" />
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.TextPrimary}" />
+  </Style>
+  <Style Selector="controls|UIKitButton.ghost:pointerover">
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.Primary}" />
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.Primary}" />
+  </Style>
+
+  <!-- Link -->
+  <Style Selector="controls|UIKitButton.link">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.Primary}" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="0" />
+  </Style>
+  <Style Selector="controls|UIKitButton.link:pointerover">
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.PrimaryHover}" />
+  </Style>
+
+  <!-- Disabled 所有变体共享 -->
+  <Style Selector="controls|UIKitButton:disabled">
+    <Setter Property="Opacity" Value="0.45" />
+    <Setter Property="Cursor" Value="Arrow" />
+  </Style>
+
+  <!-- Small Large 尺寸修饰 -->
+  <Style Selector="controls|UIKitButton.small">
+    <Setter Property="FontSize" Value="{DynamicResource UIKit.FontSizeSmall}" />
+    <Setter Property="Padding" Value="{DynamicResource UIKit.PaddingSmall}" />
+    <Setter Property="MinHeight" Value="24" />
+  </Style>
+  <Style Selector="controls|UIKitButton.large">
+    <Setter Property="FontSize" Value="{DynamicResource UIKit.FontSizeLarge}" />
+    <Setter Property="Padding" Value="{DynamicResource UIKit.PaddingLarge}" />
+    <Setter Property="MinHeight" Value="40" />
+  </Style>
+
+</Styles>

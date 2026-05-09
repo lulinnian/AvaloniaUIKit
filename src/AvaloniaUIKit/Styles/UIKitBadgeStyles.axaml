@@ -1,0 +1,80 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:AvaloniaUIKit.Controls.Badge">
+ 
+
+  <Style Selector="controls|UIKitBadge">
+    <Setter Property="FontSize" Value="{DynamicResource UIKit.FontSizeSmall}" />
+    <Setter Property="Padding" Value="6,2" />
+    <Setter Property="CornerRadius" Value="4" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="{TemplateBinding Padding}">
+          <TextBlock Text="{TemplateBinding Text}"
+                     FontSize="{TemplateBinding FontSize}"
+                     Foreground="{TemplateBinding Foreground}"
+                     VerticalAlignment="Center" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <!-- Primary -->
+  <Style Selector="controls|UIKitBadge:not(.secondary):not(.success):not(.warning):not(.danger):not(.info)">
+    <Setter Property="Background" Value="{DynamicResource UIKit.Primary}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+
+  <!-- Secondary (outline) -->
+  <Style Selector="controls|UIKitBadge.secondary">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.Primary}" />
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.Primary}" />
+    <Setter Property="BorderThickness" Value="1" />
+  </Style>
+
+  <!-- Success -->
+  <Style Selector="controls|UIKitBadge.success">
+    <Setter Property="Background" Value="{DynamicResource UIKit.Success}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+
+  <!-- Warning -->
+  <Style Selector="controls|UIKitBadge.warning">
+    <Setter Property="Background" Value="{DynamicResource UIKit.Warning}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+
+  <!-- Danger -->
+  <Style Selector="controls|UIKitBadge.danger">
+    <Setter Property="Background" Value="{DynamicResource UIKit.Danger}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+
+  <!-- Info -->
+  <Style Selector="controls|UIKitBadge.info">
+    <Setter Property="Background" Value="#FF13C2C2" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+
+  <!-- Pill 圆角修饰 -->
+  <Style Selector="controls|UIKitBadge.pill">
+    <Setter Property="CornerRadius" Value="100" />
+  </Style>
+
+</Styles>

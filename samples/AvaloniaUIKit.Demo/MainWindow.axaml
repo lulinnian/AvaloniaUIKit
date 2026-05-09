@@ -1,0 +1,156 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:kit="clr-namespace:AvaloniaUIKit.Controls.Button;assembly=AvaloniaUIKit"
+        xmlns:kitCard="clr-namespace:AvaloniaUIKit.Controls.Card;assembly=AvaloniaUIKit"
+        xmlns:kitBox="clr-namespace:AvaloniaUIKit.Controls.TextBox;assembly=AvaloniaUIKit"
+        xmlns:kitBadge="clr-namespace:AvaloniaUIKit.Controls.Badge;assembly=AvaloniaUIKit"
+        xmlns:views="clr-namespace:AvaloniaUIKit.Demo.Views"
+        x:Class="AvaloniaUIKit.Demo.MainWindow"
+        Title="AvaloniaUIKit — 控件预览"
+        Width="920" Height="680"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource UIKit.Background}">
+
+  <Grid RowDefinitions="Auto,*">
+
+    <!-- 顶部工具栏 -->
+    <Border Grid.Row="0"
+            Background="{DynamicResource UIKit.Surface}"
+            BorderBrush="{DynamicResource UIKit.Border}"
+            BorderThickness="0,0,0,1"
+            Padding="24,12">
+      <Grid ColumnDefinitions="*,Auto">
+        <TextBlock Text="AvaloniaUIKit 控件预览"
+                   FontSize="18"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource UIKit.TextPrimary}"
+                   VerticalAlignment="Center" />
+        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+          <kit:UIKitButton Classes="ghost small" x:Name="BtnLightTheme">浅色模式</kit:UIKitButton>
+          <kit:UIKitButton Classes="ghost small" x:Name="BtnDarkTheme">深色模式</kit:UIKitButton>
+        </StackPanel>
+      </Grid>
+    </Border>
+
+    <!-- 主内容区 -->
+    <ScrollViewer Grid.Row="1" Padding="24">
+      <StackPanel Spacing="32" Margin="0,0,0,48">
+
+        <!-- ====== Button 展示区 ====== -->
+        <kitCard:UIKitCard Header="UIKitButton — 按钮">
+          <StackPanel Spacing="16">
+            <!-- 变体 -->
+            <TextBlock Text="变体" FontSize="13" Foreground="{DynamicResource UIKit.TextSecondary}" />
+            <WrapPanel Margin="-4">
+              <kit:UIKitButton Margin="4">Primary</kit:UIKitButton>
+              <kit:UIKitButton Classes="secondary" Margin="4">Secondary</kit:UIKitButton>
+              <kit:UIKitButton Classes="danger" Margin="4">Danger</kit:UIKitButton>
+              <kit:UIKitButton Classes="ghost" Margin="4">Ghost</kit:UIKitButton>
+              <kit:UIKitButton Classes="link" Margin="4">Link</kit:UIKitButton>
+            </WrapPanel>
+
+            <!-- 尺寸 -->
+            <TextBlock Text="尺寸" FontSize="13" Foreground="{DynamicResource UIKit.TextSecondary}" Margin="0,8,0,0" />
+            <WrapPanel Margin="-4" VerticalAlignment="Center">
+              <kit:UIKitButton Classes="small" Margin="4">Small</kit:UIKitButton>
+              <kit:UIKitButton Margin="4">Default</kit:UIKitButton>
+              <kit:UIKitButton Classes="large" Margin="4">Large</kit:UIKitButton>
+            </WrapPanel>
+
+            <!-- 禁用 -->
+            <TextBlock Text="禁用状态" FontSize="13" Foreground="{DynamicResource UIKit.TextSecondary}" Margin="0,8,0,0" />
+            <WrapPanel Margin="-4">
+              <kit:UIKitButton IsEnabled="False" Margin="4">禁用 Primary</kit:UIKitButton>
+              <kit:UIKitButton Classes="secondary" IsEnabled="False" Margin="4">禁用 Secondary</kit:UIKitButton>
+              <kit:UIKitButton Classes="danger" IsEnabled="False" Margin="4">禁用 Danger</kit:UIKitButton>
+            </WrapPanel>
+          </StackPanel>
+        </kitCard:UIKitCard>
+
+        <!-- ====== Badge 展示区 ====== -->
+        <kitCard:UIKitCard Header="UIKitBadge — 徽标">
+          <StackPanel Spacing="16">
+            <TextBlock Text="语义变体" FontSize="13" Foreground="{DynamicResource UIKit.TextSecondary}" />
+            <WrapPanel Margin="-4">
+              <kitBadge:UIKitBadge Margin="4" Text="Primary" />
+              <kitBadge:UIKitBadge Classes="secondary" Margin="4" Text="Secondary" />
+              <kitBadge:UIKitBadge Classes="success" Margin="4" Text="成功" />
+              <kitBadge:UIKitBadge Classes="warning" Margin="4" Text="警告" />
+              <kitBadge:UIKitBadge Classes="danger" Margin="4" Text="错误" />
+              <kitBadge:UIKitBadge Classes="info" Margin="4" Text="信息" />
+            </WrapPanel>
+
+            <TextBlock Text="胶囊形状 (pill)" FontSize="13" Foreground="{DynamicResource UIKit.TextSecondary}" Margin="0,8,0,0" />
+            <WrapPanel Margin="-4">
+              <kitBadge:UIKitBadge Classes="pill" Margin="4" Text="Primary" />
+              <kitBadge:UIKitBadge Classes="success pill" Margin="4" Text="已通过" />
+              <kitBadge:UIKitBadge Classes="danger pill" Margin="4" Text="99+" />
+            </WrapPanel>
+          </StackPanel>
+        </kitCard:UIKitCard>
+
+        <!-- ====== TextBox 展示区 ====== -->
+        <kitCard:UIKitCard Header="UIKitTextBox — 输入框">
+          <StackPanel Spacing="12" MaxWidth="420" HorizontalAlignment="Left">
+            <kitBox:UIKitTextBox Watermark="普通输入框" />
+            <kitBox:UIKitTextBox Watermark="密码框" PasswordChar="●" />
+            <kitBox:UIKitTextBox Watermark="禁用状态" IsEnabled="False" Text="不可编辑内容" />
+            <kitBox:UIKitTextBox Watermark="多行文本"
+                                 AcceptsReturn="True"
+                                 MinHeight="80"
+                                 TextWrapping="Wrap" />
+          </StackPanel>
+        </kitCard:UIKitCard>
+
+        <!-- ====== Card 展示区 ====== -->
+        <kitCard:UIKitCard Header="UIKitCard — 卡片">
+          <WrapPanel Margin="-6">
+            <kitCard:UIKitCard Width="200" Margin="6">
+              <StackPanel Spacing="6">
+                <TextBlock Text="默认卡片" FontWeight="SemiBold" Foreground="{DynamicResource UIKit.TextPrimary}" />
+                <TextBlock Text="鼠标悬停无高亮效果" FontSize="12" Foreground="{DynamicResource UIKit.TextSecondary}" TextWrapping="Wrap" />
+              </StackPanel>
+            </kitCard:UIKitCard>
+            <kitCard:UIKitCard Classes="hoverable" Width="200" Margin="6">
+              <StackPanel Spacing="6">
+                <TextBlock Text="Hoverable 卡片" FontWeight="SemiBold" Foreground="{DynamicResource UIKit.TextPrimary}" />
+                <TextBlock Text="鼠标悬停时边框变为主题色" FontSize="12" Foreground="{DynamicResource UIKit.TextSecondary}" TextWrapping="Wrap" />
+              </StackPanel>
+            </kitCard:UIKitCard>
+            <kitCard:UIKitCard Classes="hoverable" Width="200" Margin="6">
+              <StackPanel Spacing="6">
+                <TextBlock Text="带图标卡片示例" FontWeight="SemiBold" Foreground="{DynamicResource UIKit.TextPrimary}" />
+                <kitBadge:UIKitBadge Classes="success pill" Text="在线" />
+                <TextBlock Text="状态正常运行中" FontSize="12" Foreground="{DynamicResource UIKit.TextSecondary}" TextWrapping="Wrap" />
+              </StackPanel>
+            </kitCard:UIKitCard>
+          </WrapPanel>
+        </kitCard:UIKitCard>
+
+        <!-- ====== 主题色自定义说明 ====== -->
+        <kitCard:UIKitCard Header="主题色定制说明">
+          <StackPanel Spacing="8">
+            <TextBlock TextWrapping="Wrap" Foreground="{DynamicResource UIKit.TextPrimary}" FontSize="13">
+              在客户端 App.axaml 中，注册 UIKitTheme 后覆盖以下资源键即可修改所有控件的主题色：
+            </TextBlock>
+            <Border Background="{DynamicResource UIKit.Surface}"
+                    CornerRadius="{DynamicResource UIKit.RadiusMedium}"
+                    Padding="12">
+              <TextBlock FontFamily="Consolas,Menlo,monospace"
+                         FontSize="12"
+                         Foreground="{DynamicResource UIKit.TextPrimary}"
+                         xml:space="preserve" TextWrapping="Wrap">&lt;Application.Resources&gt;
+  &lt;!-- 紫色主题示例 --&gt;
+  &lt;Color x:Key="UIKit.PrimaryColor"&gt;#FF722ED1&lt;/Color&gt;
+  &lt;Color x:Key="UIKit.PrimaryHoverColor"&gt;#FF9254DE&lt;/Color&gt;
+  &lt;Color x:Key="UIKit.PrimaryActiveColor"&gt;#FF531DAB&lt;/Color&gt;
+&lt;/Application.Resources&gt;</TextBlock>
+            </Border>
+          </StackPanel>
+        </kitCard:UIKitCard>
+
+      </StackPanel>
+    </ScrollViewer>
+  </Grid>
+
+</Window>

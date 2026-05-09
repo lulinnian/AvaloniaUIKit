@@ -1,0 +1,22 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaloniaUIKit.Demo.App">
+
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <!-- 浅色 Token 默认生效，运行时由 UIKitThemeService 动态替换 -->
+        <ResourceInclude Source="avares://AvaloniaUIKit/Themes/ColorTokens.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+
+  <Application.Styles>
+    <!-- 1. Avalonia 官方 Fluent 主题（基础） -->
+    <FluentTheme />
+
+    <!-- 2. 注册 AvaloniaUIKit 组件库主题（控件样式） -->
+    <StyleInclude Source="avares://AvaloniaUIKit/UIKitTheme.axaml" />
+  </Application.Styles>
+
+</Application>

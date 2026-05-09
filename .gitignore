@@ -1,0 +1,59 @@
+## ==============================
+## AvaloniaUIKit .gitignore
+## ==============================
+
+# ----- .NET 构建输出 -----
+[Bb]in/
+[Oo]bj/
+out/
+publish/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+# 但保留 NuGet.Config（项目配置需要）
+!NuGet.Config
+
+# ----- Visual Studio -----
+.vs/
+*.vspscc
+*.vssscc
+*.vsp
+*.vspx
+*.sap
+
+# ----- Rider / JetBrains -----
+.idea/
+*.iml
+
+# ----- VS Code -----
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ----- 系统文件 -----
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ----- 日志 -----
+*.log
+*.tmp
+
+# ----- 测试覆盖率 -----
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+.workbuddy/
+.github/
+

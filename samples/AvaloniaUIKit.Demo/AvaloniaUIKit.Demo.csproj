@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+
+    <!-- Avalonia 编译绑定 -->
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+
+    <!-- 允许在 macOS/Linux 上也以 WinExe 编译 -->
+    <ApplicationIcon />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="11.2.3" Condition="'$(Configuration)' == 'Debug'" />
+  </ItemGroup>
+
+  <!-- 引用核心组件库 -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AvaloniaUIKit\AvaloniaUIKit.csproj" />
+  </ItemGroup>
+
+  <!-- axaml 文件作为 Avalonia 资源嵌入（排除 App.axaml / MainWindow.axaml，它们由 XAML 编译器单独处理） -->
+  <ItemGroup>
+    <AvaloniaResource Include="**\*.axaml" Exclude="obj\**;App.axaml;MainWindow.axaml" />
+  </ItemGroup>
+
+</Project>
