@@ -6,5 +6,6 @@
   <StyleInclude Source="avares://AvaloniaUIKit/Styles/UIKitCardStyles.axaml" />
   <StyleInclude Source="avares://AvaloniaUIKit/Styles/UIKitTextBoxStyles.axaml" />
   <StyleInclude Source="avares://AvaloniaUIKit/Styles/UIKitBadgeStyles.axaml" />
+  <StyleInclude Source="avares://AvaloniaUIKit/Styles/UIKitTypewriterStyles.axaml" />
 
 </Styles>

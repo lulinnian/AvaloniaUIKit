@@ -48,6 +48,10 @@ public static class UIKitThemeService
         r["UIKit.TextPrimaryColor"] = colors.TextPrimaryColor;
         r["UIKit.TextSecondaryColor"] = colors.TextSecondaryColor;
         r["UIKit.TextDisabledColor"] = colors.TextDisabledColor;
+
+        // Typewriter
+        r["UIKit.TypewriterCursorColor"] = colors.TypewriterCursorColor;
+        r["UIKit.TypewriterThinkingColor"] = colors.TypewriterThinkingColor;
     }
 
     private record ColorSet(
@@ -55,7 +59,9 @@ public static class UIKitThemeService
         Color DangerColor, Color DangerHoverColor, Color DangerActiveColor,
         Color SuccessColor, Color WarningColor,
         Color BackgroundColor, Color SurfaceColor, Color BorderColor, Color BorderFocusColor,
-        Color TextPrimaryColor, Color TextSecondaryColor, Color TextDisabledColor);
+        Color TextPrimaryColor, Color TextSecondaryColor, Color TextDisabledColor,
+        // Typewriter
+        Color TypewriterCursorColor, Color TypewriterThinkingColor);
 
     private static readonly ColorSet LightColors = new(
         /* Primary       */  PrimaryColor: Color.Parse("#FF1677FF"),
@@ -73,7 +79,10 @@ public static class UIKitThemeService
         /* BorderFocus   */  BorderFocusColor: Color.Parse("#FF1677FF"),
         /* TextPrimary   */  TextPrimaryColor: Color.Parse("#FF000000"),
         /* TextSecondary */  TextSecondaryColor: Color.Parse("#FF8C8C8C"),
-        /* TextDisabled  */  TextDisabledColor: Color.Parse("#FFBFBFBF")
+        /* TextDisabled  */  TextDisabledColor: Color.Parse("#FFBFBFBF"),
+        // Typewriter
+        /* TwCursor      */  TypewriterCursorColor: Color.Parse("#FF1677FF"),
+        /* TwThinking    */  TypewriterThinkingColor: Color.Parse("#FF8C8C8C")
     );
 
     private static readonly ColorSet DarkColors = new(
@@ -92,6 +101,9 @@ public static class UIKitThemeService
         /* BorderFocus   */  BorderFocusColor: Color.Parse("#FF4096FF"),
         /* TextPrimary   */  TextPrimaryColor: Color.Parse("#FFE8E8E8"),
         /* TextSecondary */  TextSecondaryColor: Color.Parse("#FF8C8C8C"),
-        /* TextDisabled  */  TextDisabledColor: Color.Parse("#FF595959")
+        /* TextDisabled  */  TextDisabledColor: Color.Parse("#FF595959"),
+        // Typewriter
+        /* TwCursor      */  TypewriterCursorColor: Color.Parse("#FF4096FF"),
+        /* TwThinking    */  TypewriterThinkingColor: Color.Parse("#FF595959")
     );
 }

@@ -33,4 +33,8 @@
   <Color  x:Key="UIKit.TextSecondaryColor">#FF8C8C8C</Color>
   <Color  x:Key="UIKit.TextDisabledColor">#FF595959</Color>
 
+  <!-- 打字机 Typewriter Token -->
+  <Color  x:Key="UIKit.TypewriterCursorColor">#FF4096FF</Color>
+  <Color  x:Key="UIKit.TypewriterThinkingColor">#FF595959</Color>
+
 </ResourceDictionary>

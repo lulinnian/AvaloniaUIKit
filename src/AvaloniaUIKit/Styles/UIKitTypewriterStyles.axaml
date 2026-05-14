@@ -1,0 +1,142 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:AvaloniaUIKit.Controls.Typewriter">
+
+  <!-- ═══════════════════════════════════════════════════
+       UIKitTypewriter 基础样式 + 模板
+  ════════════════════════════════════════════════════ -->
+  <Style Selector="controls|UIKitTypewriter">
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.TextPrimary}" />
+    <Setter Property="FontSize"   Value="{DynamicResource UIKit.FontSizeBase}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <WrapPanel VerticalAlignment="Top">
+
+          <!-- 已显示文字 -->
+          <TextBlock x:Name="PART_Text"
+                     Text=""
+                     Foreground="{TemplateBinding Foreground}"
+                     FontSize="{TemplateBinding FontSize}"
+                     TextWrapping="Wrap" />
+
+          <!-- 光标竖线 (streaming 时可见) -->
+          <Border x:Name="PART_Cursor"
+                  Width="2"
+                  Height="16"
+                  CornerRadius="1"
+                  Margin="1,2,0,0"
+                  VerticalAlignment="Center"
+                  Background="{DynamicResource UIKit.TypewriterCursor}"
+                  IsVisible="False" />
+
+          <!-- 思考中三点 (thinking 时可见) -->
+          <StackPanel x:Name="PART_ThinkingDots"
+                      Orientation="Horizontal"
+                      Spacing="4"
+                      Margin="6,0,0,0"
+                      VerticalAlignment="Center"
+                      IsVisible="False">
+            <Ellipse x:Name="Dot1" Width="7" Height="7"
+                     Fill="{DynamicResource UIKit.TypewriterThinking}" />
+            <Ellipse x:Name="Dot2" Width="7" Height="7"
+                     Fill="{DynamicResource UIKit.TypewriterThinking}" />
+            <Ellipse x:Name="Dot3" Width="7" Height="7"
+                     Fill="{DynamicResource UIKit.TypewriterThinking}" />
+          </StackPanel>
+
+        </WrapPanel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <!-- ═══════════════════════════════════════════════════
+       :streaming — 显示光标 + 0.8s 无限闪烁
+  ════════════════════════════════════════════════════ -->
+  <Style Selector="controls|UIKitTypewriter:streaming /template/ Border#PART_Cursor">
+    <Setter Property="IsVisible" Value="True" />
+    <Style.Animations>
+      <Animation Duration="0:0:0.8" IterationCount="INFINITE">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="1" />
+        </KeyFrame>
+        <KeyFrame Cue="50%">
+          <Setter Property="Opacity" Value="0" />
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <!-- ═══════════════════════════════════════════════════
+       :thinking — 显示三点 + 错开延迟跳动动画
+       通过 Margin 动画模拟 Y 方向跳动（Avalonia 11
+       的 KeyFrame 不支持直接 animate RenderTransform
+       子属性，Margin 动画更可靠）。
+  ════════════════════════════════════════════════════ -->
+  <Style Selector="controls|UIKitTypewriter:thinking /template/ StackPanel#PART_ThinkingDots">
+    <Setter Property="IsVisible" Value="True" />
+  </Style>
+
+  <!-- Dot1 — 无延迟，0.8s 周期 -->
+  <Style Selector="controls|UIKitTypewriter:thinking /template/ Ellipse#Dot1">
+    <Style.Animations>
+      <Animation Duration="0:0:0.8" IterationCount="INFINITE">
+        <KeyFrame Cue="0%">
+          <Setter Property="Margin" Value="0,0,0,0" />
+        </KeyFrame>
+        <KeyFrame Cue="25%">
+          <Setter Property="Margin" Value="0,6,0,0" />
+        </KeyFrame>
+        <KeyFrame Cue="50%">
+          <Setter Property="Margin" Value="0,0,0,0" />
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Margin" Value="0,0,0,0" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <!-- Dot2 — 延迟 0.2s -->
+  <Style Selector="controls|UIKitTypewriter:thinking /template/ Ellipse#Dot2">
+    <Style.Animations>
+      <Animation Duration="0:0:0.8" IterationCount="INFINITE" Delay="0:0:0.2">
+        <KeyFrame Cue="0%">
+          <Setter Property="Margin" Value="0,0,0,0" />
+        </KeyFrame>
+        <KeyFrame Cue="25%">
+          <Setter Property="Margin" Value="0,6,0,0" />
+        </KeyFrame>
+        <KeyFrame Cue="50%">
+          <Setter Property="Margin" Value="0,0,0,0" />
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Margin" Value="0,0,0,0" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <!-- Dot3 — 延迟 0.4s -->
+  <Style Selector="controls|UIKitTypewriter:thinking /template/ Ellipse#Dot3">
+    <Style.Animations>
+      <Animation Duration="0:0:0.8" IterationCount="INFINITE" Delay="0:0:0.4">
+        <KeyFrame Cue="0%">
+          <Setter Property="Margin" Value="0,0,0,0" />
+        </KeyFrame>
+        <KeyFrame Cue="25%">
+          <Setter Property="Margin" Value="0,6,0,0" />
+        </KeyFrame>
+        <KeyFrame Cue="50%">
+          <Setter Property="Margin" Value="0,0,0,0" />
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Margin" Value="0,0,0,0" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+</Styles>

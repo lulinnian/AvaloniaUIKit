@@ -47,6 +47,12 @@
   <SolidColorBrush x:Key="UIKit.TextSecondary" Color="{DynamicResource UIKit.TextSecondaryColor}" />
   <SolidColorBrush x:Key="UIKit.TextDisabled"  Color="{DynamicResource UIKit.TextDisabledColor}" />
 
+  <!-- 打字机 Typewriter Token -->
+  <Color  x:Key="UIKit.TypewriterCursorColor">#FF1677FF</Color>
+  <Color  x:Key="UIKit.TypewriterThinkingColor">#FF8C8C8C</Color>
+  <SolidColorBrush x:Key="UIKit.TypewriterCursor"   Color="{DynamicResource UIKit.TypewriterCursorColor}" />
+  <SolidColorBrush x:Key="UIKit.TypewriterThinking" Color="{DynamicResource UIKit.TypewriterThinkingColor}" />
+
   <!-- 圆角 Token -->
   <CornerRadius x:Key="UIKit.RadiusSmall">4</CornerRadius>
   <CornerRadius x:Key="UIKit.RadiusMedium">6</CornerRadius>
