@@ -90,7 +90,9 @@ public class UIKitTypewriter : TemplatedControl
     private readonly ConcurrentQueue<char> _queue = new();
     private readonly StringBuilder _displayed = new();
     private DispatcherTimer? _timer;
+    private DispatcherTimer? _cursorTimer;
     private TextBlock? _textBlock;
+    private bool _cursorVisible;
 
     // ─── Static Constructor ────────────────────────────────────────────────
     static UIKitTypewriter()
@@ -194,6 +196,7 @@ public class UIKitTypewriter : TemplatedControl
     private void ResetCore()
     {
         _timer?.Stop();
+        UpdateCursorTimer(false);
         // 清空队列
         while (_queue.TryDequeue(out _)) { }
         _displayed.Clear();
@@ -203,7 +206,11 @@ public class UIKitTypewriter : TemplatedControl
 
     private void SyncTextBlock()
     {
-        if (_textBlock != null)
+        if (_textBlock == null) return;
+        // streaming 状态下，光标拼接在文本末尾，始终跟随最后字符
+        if (_cursorVisible && State == TypewriterState.Streaming)
+            _textBlock.Text = _displayed.ToString() + "\u2588";
+        else
             _textBlock.Text = _displayed.ToString();
     }
 
@@ -219,5 +226,41 @@ public class UIKitTypewriter : TemplatedControl
         PseudoClasses.Set(":thinking",  state == TypewriterState.Thinking);
         PseudoClasses.Set(":streaming", state == TypewriterState.Streaming);
         PseudoClasses.Set(":done",      state == TypewriterState.Done);
+
+        // streaming 时启动光标闪烁计时器，其他状态停止
+        UpdateCursorTimer(state == TypewriterState.Streaming);
+    }
+
+    private void UpdateCursorTimer(bool enable)
+    {
+        if (enable)
+        {
+            if (_cursorTimer != null && _cursorTimer.IsEnabled) return;
+            _cursorVisible = true;
+            _cursorTimer ??= new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(530) };
+            _cursorTimer.Tick -= CursorTimer_Tick;
+            _cursorTimer.Tick += CursorTimer_Tick;
+            _cursorTimer.Start();
+            SyncTextBlock();
+        }
+        else
+        {
+            if (_cursorTimer != null)
+            {
+                _cursorTimer.Stop();
+                _cursorTimer.Tick -= CursorTimer_Tick;
+            }
+            if (_cursorVisible)
+            {
+                _cursorVisible = false;
+                SyncTextBlock();
+            }
+        }
+    }
+
+    private void CursorTimer_Tick(object? sender, EventArgs e)
+    {
+        _cursorVisible = !_cursorVisible;
+        SyncTextBlock();
     }
 }

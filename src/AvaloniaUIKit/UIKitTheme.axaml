@@ -7,5 +7,7 @@
   <StyleInclude Source="avares://AvaloniaUIKit/Styles/UIKitTextBoxStyles.axaml" />
   <StyleInclude Source="avares://AvaloniaUIKit/Styles/UIKitBadgeStyles.axaml" />
   <StyleInclude Source="avares://AvaloniaUIKit/Styles/UIKitTypewriterStyles.axaml" />
+  <StyleInclude Source="avares://AvaloniaUIKit/Styles/UIKitChatBubbleStyles.axaml" />
+  <StyleInclude Source="avares://AvaloniaUIKit/Styles/UIKitChatInputStyles.axaml" />
 
 </Styles>

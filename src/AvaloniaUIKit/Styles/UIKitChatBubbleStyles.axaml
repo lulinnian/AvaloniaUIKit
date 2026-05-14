@@ -1,0 +1,140 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:AvaloniaUIKit.Controls.ChatBubble">
+
+  <!-- ═══════════════════════════════════════════════════
+       UIKitChatBubble 基础样式 + 模板
+       继承 ContentControl，支持 Content / ContentTemplate。
+       布局：DockPanel 头像停靠左侧，ContentArea 占据剩余空间。
+       Message 属性自动显示为 TextBlock（无 Content 时生效）。
+  ════════════════════════════════════════════════════ -->
+  <Style Selector="controls|UIKitChatBubble">
+    <Setter Property="FontSize"      Value="{DynamicResource UIKit.FontSizeBase}" />
+    <Setter Property="Padding"      Value="12,8" />
+    <Setter Property="Margin"       Value="0,6" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <!--
+          DockPanel：头像（Assistant）停靠左侧，内容区占剩余空间。
+          User/System 角色头像隐藏，内容区自动占满。
+        -->
+        <DockPanel>
+
+          <!-- 头像区（仅 Assistant 显示，默认隐藏） -->
+          <Border x:Name="PART_Avatar"
+                  DockPanel.Dock="Left"
+                  Width="36" Height="36"
+                  CornerRadius="18"
+                  Margin="0,0,8,0"
+                  VerticalAlignment="Top"
+                  IsVisible="False">
+            <ContentPresenter Content="{TemplateBinding Avatar}" />
+          </Border>
+
+          <!-- 气泡区 + 时间戳 -->
+          <StackPanel x:Name="PART_ContentArea" Spacing="4" MaxWidth="480"
+                      HorizontalAlignment="Right">
+
+            <!-- 气泡主体 -->
+            <Border x:Name="PART_Bubble"
+                    CornerRadius="12"
+                    Padding="12,8"
+                    Background="{DynamicResource UIKit.Primary}">
+              <Panel>
+                <!-- Message 文本（简化用法，无 Content 时显示） -->
+                <TextBlock x:Name="PART_Message"
+                           Text="{TemplateBinding Message}"
+                           TextWrapping="Wrap"
+                           IsVisible="False" />
+                <!-- Content 自定义内容（如 UIKitTypewriter） -->
+                <ContentPresenter Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  Margin="{TemplateBinding Padding}" />
+              </Panel>
+            </Border>
+
+            <!-- 时间戳 -->
+            <TextBlock x:Name="PART_Timestamp"
+                       Text="{TemplateBinding Timestamp}"
+                       FontSize="11"
+                       Foreground="{DynamicResource UIKit.TextSecondary}"
+                       Margin="4,0,4,0" />
+          </StackPanel>
+
+        </DockPanel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <!-- ═══════════════════════════════════════════════════
+       :user — 用户消息：右对齐，蓝色气泡，白色文字
+  ════════════════════════════════════════════════════ -->
+  <Style Selector="controls|UIKitChatBubble:user /template/ StackPanel#PART_ContentArea">
+    <Setter Property="HorizontalAlignment" Value="Right" />
+  </Style>
+
+  <Style Selector="controls|UIKitChatBubble:user /template/ Border#PART_Bubble">
+    <Setter Property="Background" Value="{DynamicResource UIKit.ChatBubbleUserBg}" />
+    <Setter Property="CornerRadius" Value="12,12,2,12" />
+  </Style>
+
+  <Style Selector="controls|UIKitChatBubble:user /template/ ContentPresenter">
+    <Setter Property="TextBlock.Foreground" Value="{DynamicResource UIKit.PrimaryForeground}" />
+  </Style>
+
+  <Style Selector="controls|UIKitChatBubble:user /template/ TextBlock#PART_Timestamp">
+    <Setter Property="HorizontalAlignment" Value="Right" />
+  </Style>
+
+  <!-- ═══════════════════════════════════════════════════
+       :assistant — AI 助手消息：左对齐，灰色气泡，有头像
+  ════════════════════════════════════════════════════ -->
+  <Style Selector="controls|UIKitChatBubble:assistant /template/ StackPanel#PART_ContentArea">
+    <Setter Property="HorizontalAlignment" Value="Left" />
+  </Style>
+
+  <Style Selector="controls|UIKitChatBubble:assistant /template/ Border#PART_Bubble">
+    <Setter Property="Background" Value="{DynamicResource UIKit.ChatBubbleAssistantBg}" />
+    <Setter Property="CornerRadius" Value="12,12,12,2" />
+  </Style>
+
+  <Style Selector="controls|UIKitChatBubble:assistant /template/ ContentPresenter">
+    <Setter Property="TextBlock.Foreground" Value="{DynamicResource UIKit.TextPrimary}" />
+  </Style>
+
+  <Style Selector="controls|UIKitChatBubble:assistant /template/ TextBlock#PART_Timestamp">
+    <Setter Property="HorizontalAlignment" Value="Left" />
+  </Style>
+
+  <!-- ═══════════════════════════════════════════════════
+       :system — 系统消息：居中，小字灰色，无边框
+  ════════════════════════════════════════════════════ -->
+  <Style Selector="controls|UIKitChatBubble:system /template/ StackPanel#PART_ContentArea">
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="MaxWidth" Value="320" />
+  </Style>
+
+  <Style Selector="controls|UIKitChatBubble:system /template/ Border#PART_Bubble">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="10,4" />
+  </Style>
+
+  <Style Selector="controls|UIKitChatBubble:system /template/ ContentPresenter">
+    <Setter Property="TextBlock.FontSize" Value="12" />
+    <Setter Property="TextBlock.Foreground" Value="{DynamicResource UIKit.TextSecondary}" />
+    <Setter Property="TextBlock.HorizontalAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="controls|UIKitChatBubble:system /template/ TextBlock#PART_Message">
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.TextSecondary}" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="controls|UIKitChatBubble:system /template/ TextBlock#PART_Timestamp">
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="IsVisible" Value="False" />
+  </Style>
+
+</Styles>

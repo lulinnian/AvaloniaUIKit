@@ -1,0 +1,64 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:kit="clr-namespace:AvaloniaUIKit.Controls.Button;assembly=AvaloniaUIKit"
+             xmlns:kitBubble="clr-namespace:AvaloniaUIKit.Controls.ChatBubble;assembly=AvaloniaUIKit"
+             xmlns:kitInput="clr-namespace:AvaloniaUIKit.Controls.ChatInput;assembly=AvaloniaUIKit"
+             x:Class="AvaloniaUIKit.Demo.Controls.AIChatDemo">
+
+  <Border CornerRadius="{DynamicResource UIKit.RadiusLarge}"
+          BorderBrush="{DynamicResource UIKit.Border}"
+          BorderThickness="1"
+          MinHeight="520" MaxHeight="680">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+      <!-- 聊天标题栏 -->
+      <Border Grid.Row="0"
+              Background="{DynamicResource UIKit.Surface}"
+              BorderBrush="{DynamicResource UIKit.Border}"
+              BorderThickness="0,0,0,1"
+              Padding="16,12">
+        <Grid ColumnDefinitions="Auto,*,Auto">
+          <Border Width="36" Height="36" CornerRadius="18"
+                  Background="#6C5CE7"
+                  VerticalAlignment="Center">
+            <TextBlock Text="&#x1F916;" FontSize="18"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+          </Border>
+          <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
+            <TextBlock Text="UIKit AI 助手" FontSize="14" FontWeight="SemiBold"
+                       Foreground="{DynamicResource UIKit.TextPrimary}" />
+            <TextBlock x:Name="AIChatStatusText" Text="在线" FontSize="11"
+                       Foreground="{DynamicResource UIKit.TextSecondary}" />
+          </StackPanel>
+          <kit:UIKitButton Grid.Column="2" Classes="ghost small"
+                           x:Name="BtnClearChat">清空</kit:UIKitButton>
+        </Grid>
+      </Border>
+
+      <!-- 消息列表 -->
+      <ScrollViewer Grid.Row="1" x:Name="AIChatScrollViewer"
+                    Padding="16,12,16,20" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel x:Name="AIChatMessageList" Spacing="4">
+          <!-- 欢迎消息 -->
+          <kitBubble:UIKitChatBubble Role="System"
+                                      Message="欢迎使用 AvaloniaUIKit AI 聊天演示，输入消息开始体验流式回复。" />
+        </StackPanel>
+      </ScrollViewer>
+
+      <!-- 底部输入区 -->
+      <Border Grid.Row="2"
+              Background="Transparent"
+              BorderBrush="Transparent"
+              BorderThickness="0"
+              Padding="12"
+              MinHeight="72">
+        <kitInput:UIKitChatInput x:Name="AIChatInput"
+                                Watermark="输入消息，体验 AI 流式回复..."
+                                MaxWidth="560" />
+      </Border>
+
+    </Grid>
+  </Border>
+
+</UserControl>

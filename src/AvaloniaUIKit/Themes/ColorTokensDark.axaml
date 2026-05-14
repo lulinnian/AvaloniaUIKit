@@ -37,4 +37,8 @@
   <Color  x:Key="UIKit.TypewriterCursorColor">#FF4096FF</Color>
   <Color  x:Key="UIKit.TypewriterThinkingColor">#FF595959</Color>
 
+  <!-- 聊天气泡 ChatBubble Token -->
+  <Color  x:Key="UIKit.ChatBubbleUserBgColor">#FF1677FF</Color>
+  <Color  x:Key="UIKit.ChatBubbleAssistantBgColor">#FF2A2A2A</Color>
+
 </ResourceDictionary>

@@ -29,7 +29,7 @@
 
   <!-- axaml 文件作为 Avalonia 资源嵌入（排除 App.axaml / MainWindow.axaml，它们由 XAML 编译器单独处理） -->
   <ItemGroup>
-    <AvaloniaResource Include="**\*.axaml" Exclude="obj\**;App.axaml;MainWindow.axaml" />
+    <AvaloniaResource Include="**\*.axaml" Exclude="obj\**;App.axaml;MainWindow.axaml;Controls\**" />
   </ItemGroup>
 
 </Project>

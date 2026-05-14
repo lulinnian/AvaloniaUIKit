@@ -10,24 +10,14 @@
     <Setter Property="FontSize"   Value="{DynamicResource UIKit.FontSizeBase}" />
     <Setter Property="Template">
       <ControlTemplate>
-        <WrapPanel VerticalAlignment="Top">
+        <Panel>
 
-          <!-- 已显示文字 -->
+          <!-- 已显示文字 + 光标字符（streaming 时光标 ▌ 拼接在文本末尾） -->
           <TextBlock x:Name="PART_Text"
                      Text=""
                      Foreground="{TemplateBinding Foreground}"
                      FontSize="{TemplateBinding FontSize}"
                      TextWrapping="Wrap" />
-
-          <!-- 光标竖线 (streaming 时可见) -->
-          <Border x:Name="PART_Cursor"
-                  Width="2"
-                  Height="16"
-                  CornerRadius="1"
-                  Margin="1,2,0,0"
-                  VerticalAlignment="Center"
-                  Background="{DynamicResource UIKit.TypewriterCursor}"
-                  IsVisible="False" />
 
           <!-- 思考中三点 (thinking 时可见) -->
           <StackPanel x:Name="PART_ThinkingDots"
@@ -44,30 +34,15 @@
                      Fill="{DynamicResource UIKit.TypewriterThinking}" />
           </StackPanel>
 
-        </WrapPanel>
+        </Panel>
       </ControlTemplate>
     </Setter>
   </Style>
 
   <!-- ═══════════════════════════════════════════════════
-       :streaming — 显示光标 + 0.8s 无限闪烁
+       :streaming — 光标字符 ▌ 通过 C# DispatcherTimer
+       拼接到文本末尾并交替闪烁，始终跟随最后字符
   ════════════════════════════════════════════════════ -->
-  <Style Selector="controls|UIKitTypewriter:streaming /template/ Border#PART_Cursor">
-    <Setter Property="IsVisible" Value="True" />
-    <Style.Animations>
-      <Animation Duration="0:0:0.8" IterationCount="INFINITE">
-        <KeyFrame Cue="0%">
-          <Setter Property="Opacity" Value="1" />
-        </KeyFrame>
-        <KeyFrame Cue="50%">
-          <Setter Property="Opacity" Value="0" />
-        </KeyFrame>
-        <KeyFrame Cue="100%">
-          <Setter Property="Opacity" Value="1" />
-        </KeyFrame>
-      </Animation>
-    </Style.Animations>
-  </Style>
 
   <!-- ═══════════════════════════════════════════════════
        :thinking — 显示三点 + 错开延迟跳动动画

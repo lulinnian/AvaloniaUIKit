@@ -5,6 +5,9 @@
         xmlns:kitBox="clr-namespace:AvaloniaUIKit.Controls.TextBox;assembly=AvaloniaUIKit"
         xmlns:kitBadge="clr-namespace:AvaloniaUIKit.Controls.Badge;assembly=AvaloniaUIKit"
         xmlns:kitTw="clr-namespace:AvaloniaUIKit.Controls.Typewriter;assembly=AvaloniaUIKit"
+        xmlns:kitBubble="clr-namespace:AvaloniaUIKit.Controls.ChatBubble;assembly=AvaloniaUIKit"
+        xmlns:kitInput="clr-namespace:AvaloniaUIKit.Controls.ChatInput;assembly=AvaloniaUIKit"
+        xmlns:local="clr-namespace:AvaloniaUIKit.Demo.Controls"
         x:Class="AvaloniaUIKit.Demo.MainWindow"
         Title="AvaloniaUIKit — 控件预览"
         Width="1080" Height="720"
@@ -52,6 +55,9 @@
             <kit:UIKitButton Classes="nav" x:Name="NavTextBox" Tag="SectionTextBox">TextBox 输入框</kit:UIKitButton>
             <kit:UIKitButton Classes="nav" x:Name="NavCard"   Tag="SectionCard">Card 卡片</kit:UIKitButton>
             <kit:UIKitButton Classes="nav" x:Name="NavTypewriter" Tag="SectionTypewriter">Typewriter 打字机</kit:UIKitButton>
+            <kit:UIKitButton Classes="nav" x:Name="NavChatBubble" Tag="SectionChatBubble">ChatBubble 聊天气泡</kit:UIKitButton>
+            <kit:UIKitButton Classes="nav" x:Name="NavChatInput" Tag="SectionChatInput">ChatInput 输入区</kit:UIKitButton>
+            <kit:UIKitButton Classes="nav" x:Name="NavAIChat" Tag="SectionAIChat">AI Chat 聊天</kit:UIKitButton>
           </StackPanel>
         </StackPanel>
       </Border>
@@ -59,7 +65,7 @@
       <!-- ─── 右侧滚动内容区 ─── -->
       <ScrollViewer Grid.Column="1" x:Name="ContentScrollViewer"
                     Padding="32" HorizontalScrollBarVisibility="Disabled">
-        <StackPanel Spacing="32" Margin="0,0,0,48">
+        <StackPanel Spacing="32" Margin="0,0,0,120">
 
           <!-- ====== Button 展示区 ====== -->
           <kitCard:UIKitCard x:Name="SectionButton" Header="UIKitButton — 按钮">
@@ -183,27 +189,144 @@
             </StackPanel>
           </kitCard:UIKitCard>
 
-          <!-- ====== 主题色自定义说明 ====== -->
-          <kitCard:UIKitCard Header="主题色定制说明">
-            <StackPanel Spacing="8">
-              <TextBlock TextWrapping="Wrap" Foreground="{DynamicResource UIKit.TextPrimary}" FontSize="13">
-                在客户端 App.axaml 中，注册 UIKitTheme 后覆盖以下资源键即可修改所有控件的主题色：
-              </TextBlock>
+          <!-- ====== ChatBubble 展示区 ====== -->
+          <kitCard:UIKitCard x:Name="SectionChatBubble" Header="UIKitChatBubble — 聊天气泡">
+            <StackPanel Spacing="12">
+
+              <!-- 模拟聊天场景 -->
               <Border Background="{DynamicResource UIKit.Surface}"
-                      CornerRadius="{DynamicResource UIKit.RadiusMedium}"
-                      Padding="12">
-                <TextBlock FontFamily="Consolas,Menlo,monospace"
-                           FontSize="12"
-                           Foreground="{DynamicResource UIKit.TextPrimary}"
-                           xml:space="preserve" TextWrapping="Wrap">&lt;Application.Resources&gt;
-  &lt;!-- 紫色主题示例 --&gt;
-  &lt;Color x:Key="UIKit.PrimaryColor"&gt;#FF722ED1&lt;/Color&gt;
-  &lt;Color x:Key="UIKit.PrimaryHoverColor"&gt;#FF9254DE&lt;/Color&gt;
-  &lt;Color x:Key="UIKit.PrimaryActiveColor"&gt;#FF531DAB&lt;/Color&gt;
-&lt;/Application.Resources&gt;</TextBlock>
+                      CornerRadius="{DynamicResource UIKit.RadiusLarge}"
+                      Padding="16"
+                      MaxWidth="560">
+                <StackPanel Spacing="2">
+
+                  <!-- 系统消息 -->
+                  <kitBubble:UIKitChatBubble Role="System"
+                                              Message="已连接到 AI 助手 (GPT-4)" />
+
+                  <!-- 用户消息 -->
+                  <kitBubble:UIKitChatBubble Role="User"
+                                              Message="用 C# 写一个快速排序算法"
+                                              Timestamp="14:30" />
+
+                  <!-- AI 消息（含头像） -->
+                  <kitBubble:UIKitChatBubble Role="Assistant"
+                                              Timestamp="14:31">
+                    <kitBubble:UIKitChatBubble.Avatar>
+                      <Border Width="32" Height="32" CornerRadius="16"
+                              Background="{DynamicResource UIKit.Primary}">
+                        <TextBlock Text="AI" Foreground="White"
+                                   FontWeight="Bold" FontSize="12"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                      </Border>
+                    </kitBubble:UIKitChatBubble.Avatar>
+                    <TextBlock TextWrapping="Wrap" LineHeight="22">好的，这是一个 C# 快速排序的实现：&#10;&#10;1. 选择一个基准元素（pivot）&#10;2. 将数组分为两部分&#10;3. 递归排序左右两部分&#10;4. 合并结果</TextBlock>
+                  </kitBubble:UIKitChatBubble>
+
+                  <!-- 用户消息 -->
+                  <kitBubble:UIKitChatBubble Role="User"
+                                              Message="能加注释吗？"
+                                              Timestamp="14:32" />
+
+                  <!-- AI 简短回复 -->
+                  <kitBubble:UIKitChatBubble Role="Assistant"
+                                              Timestamp="14:32">
+                    <kitBubble:UIKitChatBubble.Avatar>
+                      <Border Width="32" Height="32" CornerRadius="16"
+                              Background="{DynamicResource UIKit.Primary}">
+                        <TextBlock Text="AI" Foreground="White"
+                                   FontWeight="Bold" FontSize="12"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                      </Border>
+                    </kitBubble:UIKitChatBubble.Avatar>
+                    <TextBlock TextWrapping="Wrap">当然可以！请稍等，我马上为你添加详细的中文注释。 ✨</TextBlock>
+                  </kitBubble:UIKitChatBubble>
+
+                </StackPanel>
               </Border>
+
+              <!-- 说明 -->
+              <TextBlock FontSize="12" Foreground="{DynamicResource UIKit.TextSecondary}"
+                         Text="提示：切换浅色/深色模式可查看气泡在不同主题下的效果" />
+
             </StackPanel>
           </kitCard:UIKitCard>
+
+          <!-- ====== ChatInput 展示区 ====== -->
+          <kitCard:UIKitCard x:Name="SectionChatInput" Header="UIKitChatInput — 聊天输入区">
+            <StackPanel Spacing="20">
+
+              <!-- 基础用法：Enter 发送 -->
+              <StackPanel Spacing="8">
+                <TextBlock Text="基础用法：Enter 发送" FontSize="13" Foreground="{DynamicResource UIKit.TextSecondary}" />
+                <kitInput:UIKitChatInput x:Name="ChatInput1"
+                                        Watermark="输入消息，Enter 发送..."
+                                        MaxWidth="560" />
+                <TextBlock x:Name="ChatInput1Result"
+                           FontSize="12"
+                           Foreground="{DynamicResource UIKit.TextSecondary}"
+                           TextWrapping="Wrap" />
+              </StackPanel>
+
+              <!-- Ctrl+Enter 模式 -->
+              <StackPanel Spacing="8">
+                <TextBlock Text="Ctrl+Enter 模式（适合多行编辑）" FontSize="13" Foreground="{DynamicResource UIKit.TextSecondary}" />
+                <kitInput:UIKitChatInput x:Name="ChatInput2"
+                                        Watermark="多行编辑中，Ctrl+Enter 发送..."
+                                        SendOnCtrlEnter="True"
+                                        MaxWidth="560" />
+                <TextBlock x:Name="ChatInput2Result"
+                           FontSize="12"
+                           Foreground="{DynamicResource UIKit.TextSecondary}"
+                           TextWrapping="Wrap" />
+              </StackPanel>
+
+              <!-- 字数限制 -->
+              <StackPanel Spacing="8">
+                <TextBlock Text="字数限制（50 字）" FontSize="13" Foreground="{DynamicResource UIKit.TextSecondary}" />
+                <kitInput:UIKitChatInput Watermark="最多输入 50 个字符..."
+                                        MaxLength="50"
+                                        MaxWidth="560" />
+              </StackPanel>
+
+              <!-- 禁用状态 -->
+              <StackPanel Spacing="8">
+                <TextBlock Text="禁用状态" FontSize="13" Foreground="{DynamicResource UIKit.TextSecondary}" />
+                <kitInput:UIKitChatInput Watermark="当前不可输入"
+                                        IsEnabled="False"
+                                        Text="禁用状态下的内容"
+                                        MaxWidth="560" />
+              </StackPanel>
+
+              <!-- 说明 -->
+              <Border Background="{DynamicResource UIKit.Surface}"
+                      CornerRadius="{DynamicResource UIKit.RadiusMedium}"
+                      Padding="12"
+                      MaxWidth="560">
+                <StackPanel Spacing="4">
+                  <TextBlock Text="功能特性" FontSize="13" FontWeight="SemiBold"
+                             Foreground="{DynamicResource UIKit.TextPrimary}" />
+                  <TextBlock FontSize="12" Foreground="{DynamicResource UIKit.TextSecondary}" TextWrapping="Wrap">
+                    • 多行编辑 + 自动增高（40px ~ 200px）&#10;
+                    • Enter 发送 / Ctrl+Enter 发送可切换（Shift+Enter 始终换行）&#10;
+                    • 字数统计与限制（超过 80% 变黄，达到上限变红并禁用发送）&#10;
+                    • 拖拽文件/图片到输入区添加附件&#10;
+                    • 粘贴图片自动触发附件添加事件&#10;
+                    • 失焦自动保存草稿，RestoreDraft() 可恢复&#10;
+                    • 聚焦/拖拽/状态变化均有视觉反馈
+                  </TextBlock>
+                </StackPanel>
+              </Border>
+
+            </StackPanel>
+          </kitCard:UIKitCard>
+
+          <!-- ====== AI Chat 聊天演示 ====== -->
+          <kitCard:UIKitCard x:Name="SectionAIChat" Header="AI Chat — 智能聊天演示">
+            <local:AIChatDemo />
+          </kitCard:UIKitCard>
+
+
 
         </StackPanel>
       </ScrollViewer>

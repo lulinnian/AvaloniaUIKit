@@ -1,0 +1,190 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:AvaloniaUIKit.Controls.ChatInput"
+        xmlns:kitBox="clr-namespace:AvaloniaUIKit.Controls.TextBox">
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       UIKitChatInput — AI 聊天输入区控件 样式
+       ═══════════════════════════════════════════════════════════════════ -->
+
+  <Style Selector="controls|UIKitChatInput">
+    <Setter Property="Background" Value="{DynamicResource UIKit.Background}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.Border}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource UIKit.RadiusLarge}" />
+    <Setter Property="FontSize" Value="{DynamicResource UIKit.FontSizeBase}" />
+    <Setter Property="MinWidth" Value="280" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <Border Name="PART_OuterBorder"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{TemplateBinding CornerRadius}"
+                  Padding="12,8">
+
+            <Grid RowDefinitions="Auto,Auto,Auto">
+
+              <!-- ── 附件预览区 ── -->
+              <ItemsControl Name="PART_AttachmentsPanel"
+                            Grid.Row="0"
+                            ItemsSource="{TemplateBinding Attachments}"
+                            Margin="0,0,0,8">
+                <ItemsControl.Styles>
+                  <Style Selector="ItemsControl">
+                    <Setter Property="Template">
+                      <ControlTemplate>
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                      VerticalScrollBarVisibility="Disabled">
+                          <ItemsPresenter />
+                        </ScrollViewer>
+                      </ControlTemplate>
+                    </Setter>
+                  </Style>
+                </ItemsControl.Styles>
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" Spacing="6" />
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <Border Background="{DynamicResource UIKit.Surface}"
+                            BorderBrush="{DynamicResource UIKit.Border}"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Padding="8,4"
+                            MaxWidth="160">
+                      <StackPanel Spacing="4">
+                        <Border Width="80" Height="50"
+                                CornerRadius="4"
+                                Background="{DynamicResource UIKit.Surface}"
+                                BorderBrush="{DynamicResource UIKit.Border}"
+                                BorderThickness="1">
+                          <TextBlock Text="📎"
+                                     FontSize="20"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center" />
+                        </Border>
+                        <TextBlock Text="{Binding}"
+                                   FontSize="11"
+                                   Foreground="{DynamicResource UIKit.TextSecondary}"
+                                   TextTrimming="CharacterEllipsis"
+                                   MaxLines="1" />
+                      </StackPanel>
+                    </Border>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+
+              <!-- ── 文本编辑区（使用 UIKitTextBox 避免原生 TextBox 聚焦时背景变色） ── -->
+              <kitBox:UIKitTextBox Name="PART_EditBox"
+                       Grid.Row="1"
+                       Background="Transparent"
+                       BorderThickness="0"
+                       CornerRadius="0"
+                       Padding="0"
+                       Foreground="{DynamicResource UIKit.TextPrimary}"
+                       FontSize="{TemplateBinding FontSize}"
+                       AcceptsReturn="True"
+                       TextWrapping="Wrap"
+                       MinHeight="40"
+                       MaxHeight="200"
+                       VerticalContentAlignment="Top"
+                       Watermark="{TemplateBinding Watermark}"
+                       CaretBrush="{DynamicResource UIKit.Primary}" />
+
+              <!-- ── 底部工具栏 ── -->
+              <Grid Grid.Row="2" Margin="0,6,0,0"
+                    ColumnDefinitions="*,Auto">
+
+                <!-- 字数统计 -->
+                <TextBlock Name="PART_CharCount"
+                           Grid.Column="0"
+                           FontSize="11"
+                           Foreground="{DynamicResource UIKit.TextSecondary}"
+                           VerticalAlignment="Center" />
+
+                <!-- 发送按钮 -->
+                <Button Name="PART_SendButton"
+                        Grid.Column="1"
+                        Classes="primary small"
+                        Padding="14,6"
+                        CornerRadius="6"
+                        FontSize="13">
+                  发送
+                </Button>
+              </Grid>
+
+            </Grid>
+
+          </Border>
+
+          <!-- ── 拖拽悬停覆盖层（浮于外层 Border 之上） ── -->
+          <Border Name="PART_DragOverlay"
+                  IsVisible="False"
+                  Background="#40000000"
+                  CornerRadius="{TemplateBinding CornerRadius}"
+                  ZIndex="10">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Spacing="8">
+              <TextBlock Text="📄"
+                         FontSize="32"
+                         HorizontalAlignment="Center" />
+              <TextBlock Text="拖拽文件到此处"
+                         FontSize="14"
+                         Foreground="White"
+                         HorizontalAlignment="Center" />
+            </StackPanel>
+          </Border>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <!-- ═══ 状态样式 ═══ -->
+
+  <!-- 聚焦：边框变 Primary 色 -->
+  <Style Selector="controls|UIKitChatInput:focused /template/ Border#PART_OuterBorder">
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.Primary}" />
+  </Style>
+
+  <!-- 聚焦：内部 UIKitTextBox 保持无边框透明背景（由外层 Border 负责聚焦边框） -->
+  <Style Selector="controls|UIKitChatInput:focused /template/ kitBox|UIKitTextBox#PART_EditBox">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+
+  <!-- 聚焦：UIKitTextBox 内部 Border 也保持无边框 -->
+  <Style Selector="controls|UIKitChatInput:focused /template/ kitBox|UIKitTextBox#PART_EditBox /template/ Border#PART_Border">
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+
+  <!-- 拖拽悬停：边框高亮 + 粗边框 -->
+  <Style Selector="controls|UIKitChatInput:dragover /template/ Border#PART_OuterBorder">
+    <Setter Property="BorderBrush" Value="{DynamicResource UIKit.Primary}" />
+    <Setter Property="BorderThickness" Value="2" />
+  </Style>
+
+  <!-- 接近字数上限：字数统计变 Warning 色 -->
+  <Style Selector="controls|UIKitChatInput:nearlimit /template/ TextBlock#PART_CharCount">
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.Warning}" />
+  </Style>
+
+  <!-- 达到字数上限：字数统计变 Danger 色 -->
+  <Style Selector="controls|UIKitChatInput:atlimit /template/ TextBlock#PART_CharCount">
+    <Setter Property="Foreground" Value="{DynamicResource UIKit.Danger}" />
+  </Style>
+
+  <!-- 禁用状态 -->
+  <Style Selector="controls|UIKitChatInput:disabled /template/ Border#PART_OuterBorder">
+    <Setter Property="Opacity" Value="0.6" />
+  </Style>
+  <Style Selector="controls|UIKitChatInput:disabled /template/ kitBox|UIKitTextBox#PART_EditBox">
+    <Setter Property="IsEnabled" Value="False" />
+  </Style>
+
+</Styles>

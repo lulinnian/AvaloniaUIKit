@@ -4,9 +4,11 @@ using Avalonia.Interactivity;
 using Avalonia.Threading;
 using AvaloniaUIKit;
 using AvaloniaUIKit.Controls.Button;
+using AvaloniaUIKit.Controls.ChatInput;
 using AvaloniaUIKit.Controls.Typewriter;
 using System;
-using System.Threading.Tasks;
+using System.IO;
+using System.Linq;
 
 namespace AvaloniaUIKit.Demo;
 
@@ -28,6 +30,7 @@ public partial class MainWindow : Window
         InitializeThemeButtons();
         InitializeNavButtons();
         InitializeTypewriterDemo();
+        InitializeChatInputDemo();
     }
 
     // ─── 主题切换 ───────────────────────────────────────────────────────────
@@ -57,6 +60,9 @@ public partial class MainWindow : Window
         NavTextBox.Click    += NavButton_Click;
         NavCard.Click       += NavButton_Click;
         NavTypewriter.Click += NavButton_Click;
+        NavChatBubble.Click += NavButton_Click;
+        NavChatInput.Click  += NavButton_Click;
+        NavAIChat.Click     += NavButton_Click;
     }
 
     private void NavButton_Click(object? sender, RoutedEventArgs e)
@@ -146,5 +152,34 @@ public partial class MainWindow : Window
             TwStatusText.Text   = "状态：Done（输出完毕）";
             BtnTwPlay.IsEnabled = true;
         });
+    }
+
+    // ─── ChatInput Demo ─────────────────────────────────────────────────────
+
+    private void InitializeChatInputDemo()
+    {
+        ChatInput1.Send += ChatInput1_Send;
+        ChatInput2.Send += ChatInput2_Send;
+        ChatInput1.AttachmentAdded += ChatInput_AttachmentAdded;
+        ChatInput2.AttachmentAdded += ChatInput_AttachmentAdded;
+    }
+
+    /// <summary>Enter 模式发送回调</summary>
+    private void ChatInput1_Send(object? sender, ChatInputSendEventArgs e)
+    {
+        ChatInput1Result.Text = $"已发送（Enter 模式）：{e.Message}";
+    }
+
+    /// <summary>Ctrl+Enter 模式发送回调</summary>
+    private void ChatInput2_Send(object? sender, ChatInputSendEventArgs e)
+    {
+        ChatInput2Result.Text = $"已发送（Ctrl+Enter 模式）：{e.Message}";
+    }
+
+    /// <summary>附件添加回调（拖拽 / 粘贴）</summary>
+    private void ChatInput_AttachmentAdded(object? sender, ChatInputAttachmentEventArgs e)
+    {
+        var files = string.Join(", ", e.FilePaths.Select(Path.GetFileName));
+        ChatInput1Result.Text = $"添加附件：{files}";
     }
 }

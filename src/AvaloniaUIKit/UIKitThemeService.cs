@@ -52,6 +52,10 @@ public static class UIKitThemeService
         // Typewriter
         r["UIKit.TypewriterCursorColor"] = colors.TypewriterCursorColor;
         r["UIKit.TypewriterThinkingColor"] = colors.TypewriterThinkingColor;
+
+        // ChatBubble
+        r["UIKit.ChatBubbleUserBgColor"] = colors.ChatBubbleUserBgColor;
+        r["UIKit.ChatBubbleAssistantBgColor"] = colors.ChatBubbleAssistantBgColor;
     }
 
     private record ColorSet(
@@ -61,7 +65,9 @@ public static class UIKitThemeService
         Color BackgroundColor, Color SurfaceColor, Color BorderColor, Color BorderFocusColor,
         Color TextPrimaryColor, Color TextSecondaryColor, Color TextDisabledColor,
         // Typewriter
-        Color TypewriterCursorColor, Color TypewriterThinkingColor);
+        Color TypewriterCursorColor, Color TypewriterThinkingColor,
+        // ChatBubble
+        Color ChatBubbleUserBgColor, Color ChatBubbleAssistantBgColor);
 
     private static readonly ColorSet LightColors = new(
         /* Primary       */  PrimaryColor: Color.Parse("#FF1677FF"),
@@ -82,7 +88,10 @@ public static class UIKitThemeService
         /* TextDisabled  */  TextDisabledColor: Color.Parse("#FFBFBFBF"),
         // Typewriter
         /* TwCursor      */  TypewriterCursorColor: Color.Parse("#FF1677FF"),
-        /* TwThinking    */  TypewriterThinkingColor: Color.Parse("#FF8C8C8C")
+        /* TwThinking    */  TypewriterThinkingColor: Color.Parse("#FF8C8C8C"),
+        // ChatBubble
+        /* CbUserBg      */  ChatBubbleUserBgColor: Color.Parse("#FF1677FF"),
+        /* CbAsstBg      */  ChatBubbleAssistantBgColor: Color.Parse("#FFF5F5F5")
     );
 
     private static readonly ColorSet DarkColors = new(
@@ -104,6 +113,9 @@ public static class UIKitThemeService
         /* TextDisabled  */  TextDisabledColor: Color.Parse("#FF595959"),
         // Typewriter
         /* TwCursor      */  TypewriterCursorColor: Color.Parse("#FF4096FF"),
-        /* TwThinking    */  TypewriterThinkingColor: Color.Parse("#FF595959")
+        /* TwThinking    */  TypewriterThinkingColor: Color.Parse("#FF595959"),
+        // ChatBubble
+        /* CbUserBg      */  ChatBubbleUserBgColor: Color.Parse("#FF1677FF"),
+        /* CbAsstBg      */  ChatBubbleAssistantBgColor: Color.Parse("#FF2A2A2A")
     );
 }

@@ -53,6 +53,12 @@
   <SolidColorBrush x:Key="UIKit.TypewriterCursor"   Color="{DynamicResource UIKit.TypewriterCursorColor}" />
   <SolidColorBrush x:Key="UIKit.TypewriterThinking" Color="{DynamicResource UIKit.TypewriterThinkingColor}" />
 
+  <!-- 聊天气泡 ChatBubble Token -->
+  <Color  x:Key="UIKit.ChatBubbleUserBgColor">#FF1677FF</Color>
+  <Color  x:Key="UIKit.ChatBubbleAssistantBgColor">#FFF5F5F5</Color>
+  <SolidColorBrush x:Key="UIKit.ChatBubbleUserBg"       Color="{DynamicResource UIKit.ChatBubbleUserBgColor}" />
+  <SolidColorBrush x:Key="UIKit.ChatBubbleAssistantBg"  Color="{DynamicResource UIKit.ChatBubbleAssistantBgColor}" />
+
   <!-- 圆角 Token -->
   <CornerRadius x:Key="UIKit.RadiusSmall">4</CornerRadius>
   <CornerRadius x:Key="UIKit.RadiusMedium">6</CornerRadius>
